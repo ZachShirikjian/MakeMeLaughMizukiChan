@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public List<Dialogue> dialogueList;
     public int curPlace = 0; //current place in dialogue, starts at 
     public int laughAmount = 0; //goes up every time correct answer chosen
+    public bool noAnswers = false;
 
     //REFS//
     public GameObject optionsMenu;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
         laughMeter.gameObject.SetActive(false);
         timerUI.SetActive(false);
         musicSource.clip = null;
+        noAnswers = false;
         countdownText.text = "";
         speakerText.text = dialogueList[0].dialogueText.ToString();
         mizukiSprite.sprite = dialogueList[0].characterSprite;
@@ -90,37 +92,75 @@ public class GameManager : MonoBehaviour
         LoadDialogue();
     }
 
+    //Loads next dialogue choice. After 3 seconds, appear the options. 
     public void LoadDialogue()
     {
-        dialogueBox.SetActive(true);
-        curPlace++;
-        speakerText.text = dialogueList[1].dialogueText.ToString();
-        Invoke("AppearOptions", 3f);
+        Debug.Log("LOAD NEW DIALOGUE");
+        dialogueBox.SetActive(true); 
+        if(noAnswers == true)
+        {
+            noAnswers = false;
+        }
+        else if(noAnswers == false)
+        {
+            Debug.Log("BUTTON WAS PREVIOUSLY CHOSEN");
+            curPlace++;
+        }
+
+
+        //16 is last line of dialogue 
+        if (curPlace >= 16)
+        {
+            Debug.Log("GAME FINISH!");
+            Invoke("FinishGame", 3f);
+        }
+        else if(curPlace < 16)
+        {
+            speakerText.text = dialogueList[curPlace].dialogueText.ToString();
+            sfxSource.PlayOneShot(dialogueList[curPlace].soundEffect);
+            mizukiSprite.sprite = dialogueList[curPlace].characterSprite;
+            Invoke("AppearOptions", 3f);
+        }
+
+    }
+
+
+    //Checks # of correct answers given based on laugh value
+    public void FinishGame()
+    {
+        if(laughAmount >= 4)
+        {
+            Debug.Log("GAME WIN!");
+            speakerText.text = dialogueList[18].dialogueText.ToString();
+            sfxSource.PlayOneShot(dialogueList[18].soundEffect);
+            mizukiSprite.sprite = dialogueList[18].characterSprite;
+        }
+
+        //PLAY LOSING SFX
+        else if (laughAmount < 4)
+        {
+            Debug.Log("GAME LOSE");
+            speakerText.text = dialogueList[17].dialogueText.ToString();
+            sfxSource.PlayOneShot(dialogueList[17].soundEffect);
+            mizukiSprite.sprite = dialogueList[17].characterSprite; 
+        }
     }
 
     //OPEN OPTIONS MENU 
     public void AppearOptions()
     {
-        curPlace++;
-
-        speakerText.text = dialogueList[curPlace].dialogueText.ToString();
-        sfxSource.PlayOneShot(dialogueList[curPlace].soundEffect);
-        mizukiSprite.sprite = dialogueList[curPlace].characterSprite;
-
         optionsMenu.SetActive(true);
 
-        GameObject randomOption = Instantiate(optionPrefabs[Random.Range(0,4)], canvas.transform.position, Quaternion.identity);
-        randomOption.transform.SetParent(canvas.transform);
+        //GameObject randomOption = Instantiate(optionPrefabs[Random.Range(0,4)], canvas.transform.position, Quaternion.identity);
+       // randomOption.transform.SetParent(canvas.transform);
 
-        EventSystem.current.SetSelectedGameObject(randomOption);
-
-        musicSource.Pause();
+        //EventSystem.current.SetSelectedGameObject(randomOption);
 
         //RANDOMLY SELECT A BUTTON ON THE LIST//
-       // GameObject randomButton = optionsMenu.transform.GetChild(Random.Range(0,1)).gameObject;
+        // GameObject randomButton = optionsMenu.transform.GetChild(Random.Range(0,1)).gameObject;
 
         //IF no buttons are pressed in 3 seconds, close the options menu, then move onto the next piece of dialogue.
-        Invoke("NoOptionsSelected", 3f);
+        Invoke("NoOptionsSelected", 5f);
       //  //if(!performed)
       //  {
        //     CloseOptions();
@@ -132,15 +172,16 @@ public class GameManager : MonoBehaviour
     //RESETS APPEAR OPTIONS AND CONTINUE TO THE NEXT OPTION
     public void NoOptionsSelected()
     {
+        Debug.Log("NO OPTIONS SELECTED");
         optionsMenu.SetActive(false);
-        musicSource.UnPause();
 
         //MAKE THIS THE LAST PIECE OF DIALOGUE FOR NOW//
-        speakerText.text = dialogueList[dialogueList.Count - 1].dialogueText.ToString();
-        sfxSource.PlayOneShot(dialogueList[dialogueList.Count - 1].soundEffect);
-        mizukiSprite.sprite = dialogueList[dialogueList.Count - 1].characterSprite;
-        curPlace++;
-        Invoke("AppearOptions", 1f);
+        speakerText.text = dialogueList[16].dialogueText.ToString();
+        sfxSource.PlayOneShot(dialogueList[16].soundEffect);
+        mizukiSprite.sprite = dialogueList[16].characterSprite;
+        curPlace+=3;
+        noAnswers = true;
+        Invoke("LoadDialogue", 3f);
     }
 
     //CALLED ON THE SUBMIT BUTTON

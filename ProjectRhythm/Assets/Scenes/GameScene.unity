@@ -1390,8 +1390,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2631de3e43807254786b2200eb21b360, type: 2}
   - {fileID: 11400000, guid: a98b3d698329312479532bc79d42e8e6, type: 2}
   - {fileID: 11400000, guid: 82cd08ee15a76bc47a7bdc8558ed4436, type: 2}
+  - {fileID: 11400000, guid: 56b8e24b6def5c140ac2fb32e0e835d0, type: 2}
+  - {fileID: 11400000, guid: 8f98f9ee11bc6b14d83407bd12b7185c, type: 2}
+  - {fileID: 11400000, guid: 05f82fa76aaf0d1479c9b0de425bf852, type: 2}
+  - {fileID: 11400000, guid: b8647790a1f04c54ea97ff3632c372a5, type: 2}
+  - {fileID: 11400000, guid: 5eb1ea6e44843ab4c92427d4213cfcb7, type: 2}
+  - {fileID: 11400000, guid: 2449915c1a48f3a4bba59d46e6e353f0, type: 2}
+  - {fileID: 11400000, guid: 4c894978911cc0d49afdd33461bc080d, type: 2}
+  - {fileID: 11400000, guid: 18161eef33a1975438834a250a91c9b1, type: 2}
+  - {fileID: 11400000, guid: 299eb51e0f769844ab4e9e823d354f24, type: 2}
   curPlace: 0
   laughAmount: 0
+  noAnswers: 0
   optionsMenu: {fileID: 1806512638}
   dialogueBox: {fileID: 1195600091}
   speakerText: {fileID: 331793903}
