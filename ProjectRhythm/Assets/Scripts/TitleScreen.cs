@@ -10,12 +10,16 @@ public class TitleScreen : MonoBehaviour
     public GameObject controlsButton;
     public GameObject controlsPanel;
     public GameObject closeControls;
+    public GameObject creditsPanel;
+    public GameObject creditsButton;
+    public GameObject closeCredits;
 
     //REFERENCES//
 
     // Start is called before the first frame update
     void Start()
     {
+        creditsPanel.SetActive(false);
         controlsPanel.SetActive(false);
         EventSystem.current.SetSelectedGameObject(playButton);
     }
@@ -30,6 +34,19 @@ public class TitleScreen : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("GameScene");
+    }
+
+    //OPENS UP CREDITS//
+    public void OpenCredits()
+    {
+        creditsPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(closeCredits);
+    }
+
+    public void CloseCredits()
+    {
+        creditsPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(creditsButton);
     }
 
     //OPENS UP CONTROLS MENU//

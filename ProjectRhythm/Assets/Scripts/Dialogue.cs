@@ -8,7 +8,6 @@ using UnityEngine.UI;
 //SCRIPTABLE OBJECT TO ALLOW FOR EASY DIALOGUE CREATION
 public class Dialogue : ScriptableObject
 {
-
     //VARIABLES//
     public bool correctDialogue; //checked w/ dialogue manager to see if this was correct part of the song or not 
 
@@ -20,4 +19,8 @@ public class Dialogue : ScriptableObject
 
     //portrait of mizuki for this piece of dialogue 
     public Sprite characterSprite;
+
+    //THE CORRECT/INCORRECT OPTION PREFABS TO SPAWN
+    public GameObject correctButton;
+    public GameObject incorrectButton;
 }

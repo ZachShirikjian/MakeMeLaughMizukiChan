@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip countdownBeep;
     public AudioClip gameStart;
     public AudioClip gameFinish;
+    public AudioClip noAnswer;
     //MUSIC//
     public AudioClip BGM;
 }

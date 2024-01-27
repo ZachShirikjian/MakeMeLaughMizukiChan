@@ -236,6 +236,7 @@ MonoBehaviour:
   countdownBeep: {fileID: 8300000, guid: 947e6b945c2f50b43b34d06fe4561279, type: 3}
   gameStart: {fileID: 8300000, guid: 236c47adcc4e5fe4ba026969f8e8d551, type: 3}
   gameFinish: {fileID: 8300000, guid: 817e6cb6b90e17a4c98efb643a8d3364, type: 3}
+  noAnswer: {fileID: 8300000, guid: e6545f1c956c07a42acaded9a72330e4, type: 3}
   BGM: {fileID: 8300000, guid: e43c242a8b1b30e489436778a3ff4847, type: 3}
 --- !u!82 &263698613
 AudioSource:
@@ -561,8 +562,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1399,6 +1400,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4c894978911cc0d49afdd33461bc080d, type: 2}
   - {fileID: 11400000, guid: 18161eef33a1975438834a250a91c9b1, type: 2}
   - {fileID: 11400000, guid: 299eb51e0f769844ab4e9e823d354f24, type: 2}
+  - {fileID: 11400000, guid: 7fd6ce03f3f5f974eabb6559751ab1da, type: 2}
+  - {fileID: 11400000, guid: ed991640e1b1b0f489e0659a8e11c41d, type: 2}
   curPlace: 0
   laughAmount: 0
   noAnswers: 0
@@ -1414,7 +1417,7 @@ MonoBehaviour:
   mizukiSprite: {fileID: 1127190184}
   laughMeter: {fileID: 485626277}
   optionPrefabs:
-  - {fileID: 8374070130308955899, guid: 4456baf227693b240806aa4217a589eb, type: 3}
+  - {fileID: 5400657129447881013, guid: f59fbaa126c94844c862e74770e2d694, type: 3}
   - {fileID: 6062860787375040180, guid: 71ec948f24372e641b7feb4c1ecf0f2c, type: 3}
   - {fileID: 8374070130308955899, guid: 4456baf227693b240806aa4217a589eb, type: 3}
   - {fileID: 6062860787375040180, guid: 71ec948f24372e641b7feb4c1ecf0f2c, type: 3}
