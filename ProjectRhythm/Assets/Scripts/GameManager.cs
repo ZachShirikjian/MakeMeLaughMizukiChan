@@ -28,8 +28,13 @@ public class GameManager : MonoBehaviour
     public Image mizukiSprite;
     public Slider laughMeter;
 
+    public GameObject[] optionPrefabs = new GameObject[4];
+
+    private GameObject canvas;
+
     void Start()
     {
+        canvas = GameObject.Find("Canvas");
         optionsMenu.SetActive(false);
         laughMeter.gameObject.SetActive(false);
         timerUI.SetActive(false);
@@ -72,7 +77,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         countdownText.text = "";
         StartGame();
-
     }
 
     //STARTS THE GAME after Countdown ends 
@@ -104,12 +108,16 @@ public class GameManager : MonoBehaviour
         mizukiSprite.sprite = dialogueList[curPlace].characterSprite;
 
         optionsMenu.SetActive(true);
+
+        GameObject randomOption = Instantiate(optionPrefabs[Random.Range(0,4)], canvas.transform.position, Quaternion.identity);
+        randomOption.transform.SetParent(canvas.transform);
+
+        EventSystem.current.SetSelectedGameObject(randomOption);
+
         musicSource.Pause();
 
         //RANDOMLY SELECT A BUTTON ON THE LIST//
-        GameObject randomButton = optionsMenu.transform.GetChild(Random.Range(0,1)).gameObject;
-        EventSystem.current.SetSelectedGameObject(randomButton);
-
+       // GameObject randomButton = optionsMenu.transform.GetChild(Random.Range(0,1)).gameObject;
 
         //IF no buttons are pressed in 3 seconds, close the options menu, then move onto the next piece of dialogue.
         Invoke("NoOptionsSelected", 3f);
@@ -132,6 +140,19 @@ public class GameManager : MonoBehaviour
         sfxSource.PlayOneShot(dialogueList[7].soundEffect);
         mizukiSprite.sprite = dialogueList[7].characterSprite;
         Invoke("AppearOptions", 1f);
+    }
+
+    //CALLED ON THE SUBMIT BUTTON
+    public void ContinueDialogue()
+    {
+        if(dialogueList[curPlace].correctDialogue == true)
+        {
+            Debug.Log("CORRECT ANSWER");
+        }
+        else if(dialogueList[curPlace].correctDialogue == false)
+        {
+            Debug.Log("WRONG ANSWER");
+        }
     }
 
 
