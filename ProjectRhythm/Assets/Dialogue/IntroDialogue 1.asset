@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   correctDialogue: 0
   soundEffect: {fileID: 0}
-  dialogueText: You slip on a banana peel, how would you react?
+  dialogueText: How would you feel if you stepped on a Lego?
   characterSprite: {fileID: 21300000, guid: b2f767fd8bd99ab4abd70a790824baa9, type: 3}

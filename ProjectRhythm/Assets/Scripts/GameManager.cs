@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     //After intro dialogue plays for a few seconds, call this method to start game 
     IEnumerator Countdown()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(10f);
         dialogueBox.SetActive(false);
         for (int i = 3; i >= 0; i--)
         {
@@ -136,9 +136,10 @@ public class GameManager : MonoBehaviour
         musicSource.UnPause();
 
         //MAKE THIS THE LAST PIECE OF DIALOGUE FOR NOW//
-        speakerText.text = dialogueList[7].dialogueText.ToString();
-        sfxSource.PlayOneShot(dialogueList[7].soundEffect);
-        mizukiSprite.sprite = dialogueList[7].characterSprite;
+        speakerText.text = dialogueList[dialogueList.Count - 1].dialogueText.ToString();
+        sfxSource.PlayOneShot(dialogueList[dialogueList.Count - 1].soundEffect);
+        mizukiSprite.sprite = dialogueList[dialogueList.Count - 1].characterSprite;
+        curPlace++;
         Invoke("AppearOptions", 1f);
     }
 

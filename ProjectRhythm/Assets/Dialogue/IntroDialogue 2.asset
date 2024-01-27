@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: IntroDialogue 2
   m_EditorClassIdentifier: 
   correctDialogue: 0
-  soundEffect: {fileID: 0}
-  dialogueText: BAKA! They could've gotten hurt you know.
+  soundEffect: {fileID: 8300000, guid: 9fdf6fbf42a49524891881e7b3d6702b, type: 3}
+  dialogueText: What? You like to enjoy pain? That's weird of you.
   characterSprite: {fileID: 21300000, guid: bf95b14002ed8144ba291087f1deab8e, type: 3}

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: IntroDialogue 6
   m_EditorClassIdentifier: 
   correctDialogue: 1
-  soundEffect: {fileID: 0}
-  dialogueText: In the house like carpet? HAHAHA! What does that mean?
+  soundEffect: {fileID: 8300000, guid: 788c4fc5307da39429cedf711a3bdd43, type: 3}
+  dialogueText: '*Giggle* glad to know we''re on the same page, Mako-san.'
   characterSprite: {fileID: 21300000, guid: ca83a5612bd720841b929852448817f8, type: 3}
