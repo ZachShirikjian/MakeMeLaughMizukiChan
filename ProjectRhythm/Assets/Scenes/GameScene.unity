@@ -781,9 +781,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 3
+  m_MaxValue: 5
   m_WholeNumbers: 1
-  m_Value: 3
+  m_Value: 5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1104,7 +1104,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 500, y: 500}
+  m_SizeDelta: {x: 866, y: 619}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1127190184
 MonoBehaviour:
@@ -1126,7 +1126,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b2f767fd8bd99ab4abd70a790824baa9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb0b4433062bddd4ca7a024986881d42, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1413,11 +1413,10 @@ MonoBehaviour:
   musicSource: {fileID: 1531120860}
   mizukiSprite: {fileID: 1127190184}
   laughMeter: {fileID: 485626277}
-  optionPrefabs:
-  - {fileID: 5400657129447881013, guid: f59fbaa126c94844c862e74770e2d694, type: 3}
-  - {fileID: 6062860787375040180, guid: 71ec948f24372e641b7feb4c1ecf0f2c, type: 3}
-  - {fileID: 8374070130308955899, guid: 4456baf227693b240806aa4217a589eb, type: 3}
-  - {fileID: 6062860787375040180, guid: 71ec948f24372e641b7feb4c1ecf0f2c, type: 3}
+  chooseOption: {fileID: -8990679901327366081, guid: f5e3bf27db48b3b4abe9d57459905a49, type: 3}
+  controls: {fileID: -944628639613478452, guid: f5e3bf27db48b3b4abe9d57459905a49, type: 3}
+  correctPrefab: {fileID: 0}
+  incorrectPrefab: {fileID: 0}
 --- !u!4 &1217990690
 Transform:
   m_ObjectHideFlags: 0
@@ -2013,7 +2012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8374070130308955899, guid: 4456baf227693b240806aa4217a589eb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2120,7 +2119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6062860787375040180, guid: 71ec948f24372e641b7feb4c1ecf0f2c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6662232725810164274, guid: 71ec948f24372e641b7feb4c1ecf0f2c, type: 3}
       propertyPath: m_Sprite

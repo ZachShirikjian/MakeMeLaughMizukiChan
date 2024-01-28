@@ -29,9 +29,14 @@ public class GameManager : MonoBehaviour
     public Image mizukiSprite;
     public Slider laughMeter;
 
-    public GameObject[] optionPrefabs = new GameObject[4];
-
     private GameObject canvas;
+    //public ButtonCheck buttonCheckScript;
+
+    public InputActionReference chooseOption; //SUBMIT button for choosing option
+    public InputActionAsset controls; //control layout
+
+    public GameObject correctPrefab;
+    public GameObject incorrectPrefab;
 
     void Start()
     {
@@ -49,6 +54,9 @@ public class GameManager : MonoBehaviour
         timeRemaining = 3;
         sfxSource.PlayOneShot(dialogueList[0].soundEffect);
         StartCoroutine("Countdown");
+
+        //DISABLE ENTER INPUT BEFORE GAME STARTS
+        OnDisable();
     }
 
     // Update is called once per frame
@@ -56,6 +64,24 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
+
+    //WHEN OPTIONS APPEAR, PRESS SUBMIT 
+    private void OnEnable()
+    {
+        chooseOption.action.performed += ContinueDialogue;
+        chooseOption.action.Enable();
+    }
+
+    //WHEN OPTIONS DISAPPEAR, PREVENT SUBMIT BUTTON FROM BEING PRESSED
+    private void OnDisable()
+    {
+        // -= ContinueDialogue();
+        chooseOption.action.performed -= ContinueDialogue;
+        chooseOption.action.Disable();
+    }
+    //submit.performed += ContinueDialogue()
+
     //After intro dialogue plays for a few seconds, call this method to start game 
     IEnumerator Countdown()
     {
@@ -103,7 +129,6 @@ public class GameManager : MonoBehaviour
         }
         else if(noAnswers == false)
         {
-            Debug.Log("BUTTON WAS PREVIOUSLY CHOSEN");
             curPlace++;
         }
 
@@ -127,7 +152,6 @@ public class GameManager : MonoBehaviour
             mizukiSprite.sprite = dialogueList[curPlace].characterSprite;
             StopAllCoroutines(); //Ensures that only 1 instance of AnswerTimer coroutine runs at a time
             StartCoroutine("AnswerTimer");
-          //  Invoke("AppearOptions", 3f);
         }
 
     }
@@ -178,17 +202,19 @@ public class GameManager : MonoBehaviour
     //OPEN OPTIONS MENU 
     public void AppearOptions()
     {
+        Debug.Log("OPEN MENU");
         optionsMenu.SetActive(true);
-        GameObject option1 = Instantiate(dialogueList[curPlace].correctButton, optionsMenu.transform);
-        GameObject option2 = Instantiate(dialogueList[curPlace].incorrectButton, optionsMenu.transform);
+        correctPrefab = Instantiate(dialogueList[curPlace].correctButton, optionsMenu.transform);
+        incorrectPrefab = Instantiate(dialogueList[curPlace].incorrectButton, optionsMenu.transform);
+        incorrectPrefab.transform.position = new Vector3(incorrectPrefab.transform.position.x + 100, incorrectPrefab.transform.position.y);
 
-        EventSystem.current.SetSelectedGameObject(option1);
-
-      //  option1.transform.SetParent(optionsMenu.transform);
-       // option2.transform.SetParent(optionsMenu.transform);
+        EventSystem.current.SetSelectedGameObject(correctPrefab);
+        //correctPrefab = option1;
+       // incorrectPrefab = option2;
+        OnEnable();
 
         //IF no buttons are pressed in 5 seconds, close the options menu, then move onto the next piece of dialogue.
-        Invoke("NoOptionsSelected", 5f);
+        //Invoke("NoOptionsSelected", 5f);
       //  //if(!performed)
       //  {
        //     CloseOptions();
@@ -200,29 +226,87 @@ public class GameManager : MonoBehaviour
     //RESETS APPEAR OPTIONS AND CONTINUE TO THE NEXT OPTION
     public void NoOptionsSelected()
     {
-        Debug.Log("NO OPTIONS SELECTED");
-        optionsMenu.SetActive(false);
+        //IF NO BUTTONS WERE PRESSED
+        //LOAD NO ANSWERS GIVEN DIALOGUE 
+        if(!chooseOption.action.triggered)
+        {
+            OnDisable();
+            Debug.Log("NO OPTIONS SELECTED");
+            optionsMenu.SetActive(false);
 
-        //MAKE THIS THE LAST PIECE OF DIALOGUE FOR NOW//
-        speakerText.text = dialogueList[16].dialogueText.ToString();
-        mizukiSprite.sprite = dialogueList[16].characterSprite;
-        sfxSource.PlayOneShot(audioManager.noAnswer, 0.35f);
-        curPlace += 3;
-        noAnswers = true;
-        Invoke("LoadDialogue", 3f);
+            //MAKE THIS THE LAST PIECE OF DIALOGUE FOR NOW//
+            speakerText.text = dialogueList[16].dialogueText.ToString();
+            mizukiSprite.sprite = dialogueList[16].characterSprite;
+            sfxSource.PlayOneShot(audioManager.noAnswer, 0.35f);
+            curPlace += 3;
+            noAnswers = true;
+            Invoke("LoadDialogue", 3f);
+        }
+
+
+        //IF CORRECT BUTTON WAS PRESSED
+       // else if(buttonCheckScript.correctButPressed == true)
+       // {
+       //     ContinueDialogue(
+       // }
+
+      //  else if(buttonCheckScript.correctButPressed == false)
+      //  {
+       //     ContinueDialogue(false);
+      //  }
+
     }
 
     //CALLED ON THE SUBMIT BUTTON
-    public void ContinueDialogue()
+    public void ContinueDialogue(InputAction.CallbackContext context)
     {
-        if(dialogueList[curPlace].correctDialogue == true)
+        Debug.Log(EventSystem.current.currentSelectedGameObject);
+
+        //IF correctPrefab selected and pressed, jump to correct dialogue option
+        if(EventSystem.current.currentSelectedGameObject == correctPrefab)
         {
             Debug.Log("CORRECT ANSWER");
+            optionsMenu.SetActive(false);
+            curPlace += 2;
+            speakerText.text = dialogueList[curPlace].dialogueText.ToString();
+            mizukiSprite.sprite = dialogueList[curPlace].characterSprite;
+            sfxSource.PlayOneShot(dialogueList[curPlace].soundEffect);
+            laughAmount++;
+            laughMeter.value += 1;
+
+            //DESTROY COPIES OF CORRECT/INCORRECT PREFABS IN THE UI! 
+            Destroy(correctPrefab.gameObject);
+            Destroy(incorrectPrefab.gameObject);
+
         }
-        else if(dialogueList[curPlace].correctDialogue == false)
+
+        //IF incorrectPrefab selected and pressed, jump to incorrect dialogue option 
+        else if(EventSystem.current.currentSelectedGameObject == incorrectPrefab)
         {
             Debug.Log("WRONG ANSWER");
+            optionsMenu.SetActive(false);
+            //MAKE THIS THE LAST PIECE OF DIALOGUE FOR NOW//
+            curPlace += 1;
+            speakerText.text = dialogueList[curPlace].dialogueText.ToString();
+            mizukiSprite.sprite = dialogueList[curPlace].characterSprite;
+            sfxSource.PlayOneShot(dialogueList[curPlace].soundEffect);
+
+            //DESTROY COPIES OF CORRECT/INCORRECT PREFABS IN THE UI! 
+            Destroy(correctPrefab.gameObject);
+            Destroy(incorrectPrefab.gameObject);
         }
+
+        OnDisable();
+        Invoke("LoadDialogue", 3f);
+
+        //  if(dialogueList[curPlace].correctDialogue == true)
+        //  {
+        //      Debug.Log("CORRECT ANSWER");
+        // }
+        // else if(dialogueList[curPlace].correctDialogue == false)
+        //  {
+        //      Debug.Log("WRONG ANSWER");
+        //  }
     }
 
 
