@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class UISFX : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public AudioSource sfxSource;
+    public AudioManager audioScript;
+    public void HoverSound()
     {
-        
+        sfxSource.PlayOneShot(audioScript.hoverBut);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SubmitSound()
     {
-        
+        sfxSource.PlayOneShot(audioScript.clickBut);
     }
+
 }

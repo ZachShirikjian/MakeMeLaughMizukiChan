@@ -17,6 +17,6 @@ MonoBehaviour:
   dialogueText: 'Will you go out with me, Mako-San?
 
 '
-  characterSprite: {fileID: 21300000, guid: fb0b4433062bddd4ca7a024986881d42, type: 3}
+  characterSprite: {fileID: 21300000, guid: 15dc5067253b8784aba9eecd44a71d36, type: 3}
   correctButton: {fileID: 5400657129447881013, guid: f59fbaa126c94844c862e74770e2d694, type: 3}
   incorrectButton: {fileID: 5400657129447881013, guid: 7caf8295bdd67ce43b568c8b2c86f514, type: 3}

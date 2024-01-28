@@ -15,6 +15,6 @@ MonoBehaviour:
   correctDialogue: 0
   soundEffect: {fileID: 8300000, guid: 9fdf6fbf42a49524891881e7b3d6702b, type: 3}
   dialogueText: WOAH! Slow down, these things take time! We're not even dating yet!
-  characterSprite: {fileID: 21300000, guid: a382593ecb253a14f997dbbe38059d82, type: 3}
+  characterSprite: {fileID: 21300000, guid: dfb1a15f4d5dd61429faedf13461d919, type: 3}
   correctButton: {fileID: 0}
   incorrectButton: {fileID: 0}

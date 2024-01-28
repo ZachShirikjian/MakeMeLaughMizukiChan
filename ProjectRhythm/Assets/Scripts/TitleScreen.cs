@@ -45,7 +45,7 @@ public class TitleScreen : MonoBehaviour
 
     public void CloseCredits()
     {
-        creditsPanel.SetActive(true);
+        creditsPanel.SetActive(false);
         EventSystem.current.SetSelectedGameObject(creditsButton);
     }
 

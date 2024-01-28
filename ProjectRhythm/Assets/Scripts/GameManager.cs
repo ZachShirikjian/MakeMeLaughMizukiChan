@@ -16,7 +16,12 @@ public class GameManager : MonoBehaviour
     public int laughAmount = 0; //goes up every time correct answer chosen
     public bool noAnswers = true;
 
+    public AudioClip[] countdownSounds = new AudioClip[4];
+
     //REFS//
+    public GameObject restartBut;
+    public GameObject quitBut;
+
     public GameObject optionsMenu;
     public GameObject dialogueBox;
     public TextMeshProUGUI speakerText;
@@ -41,6 +46,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         canvas = GameObject.Find("Canvas");
+        restartBut.SetActive(false);
+        quitBut.SetActive(false);
         optionsMenu.SetActive(false);
         laughMeter.gameObject.SetActive(false);
         timerUI.SetActive(false);
@@ -92,12 +99,13 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (i > 0)
             {
-                sfxSource.PlayOneShot(audioManager.countdownBeep);
+                sfxSource.PlayOneShot(countdownSounds[i]);
                 countdownText.text = i.ToString();
             }
             else if (i <= 0)
             {
                 Debug.Log("START");
+                sfxSource.PlayOneShot(countdownSounds[0]);
                 countdownText.text = "START!";
                // sfxSource.PlayOneShot(audioManager.gameStart);
             }
@@ -126,6 +134,7 @@ public class GameManager : MonoBehaviour
         if(noAnswers == false)
         {
             noAnswers = true;
+           curPlace++;
         }
         else if(noAnswers == true)
         {
@@ -198,6 +207,16 @@ public class GameManager : MonoBehaviour
             sfxSource.PlayOneShot(dialogueList[17].soundEffect);
             mizukiSprite.sprite = dialogueList[17].characterSprite; 
         }
+        Invoke("TryAgain", 6f);
+    }
+
+    //After dialogue plays, make restart & quit options selectable
+    public void TryAgain()
+    {
+        restartBut.SetActive(true);
+        quitBut.SetActive(true);
+        dialogueBox.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(restartBut);
     }
 
     //OPEN OPTIONS MENU 
@@ -293,8 +312,8 @@ public class GameManager : MonoBehaviour
         }
 
         noAnswers = false;
-        OnDisable();
         optionsMenu.SetActive(false);
+        OnDisable();
         Invoke("LoadDialogue", 3f);
 
         //  if(dialogueList[curPlace].correctDialogue == true)
