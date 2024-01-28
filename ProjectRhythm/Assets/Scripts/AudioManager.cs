@@ -9,6 +9,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip gameStart;
     public AudioClip gameFinish;
     public AudioClip noAnswer;
+    public AudioClip correctAnswer;
+    public AudioClip wrongAnswer;
+
     //MUSIC//
     public AudioClip BGM;
 }

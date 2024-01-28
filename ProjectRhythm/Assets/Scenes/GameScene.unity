@@ -233,10 +233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f77a9472ac5614fb0c4137dff12d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownBeep: {fileID: 8300000, guid: 947e6b945c2f50b43b34d06fe4561279, type: 3}
+  countdownBeep: {fileID: 8300000, guid: a6e79a43155fa2c48b9e8e5a17e6b4a4, type: 3}
   gameStart: {fileID: 8300000, guid: 236c47adcc4e5fe4ba026969f8e8d551, type: 3}
-  gameFinish: {fileID: 8300000, guid: 817e6cb6b90e17a4c98efb643a8d3364, type: 3}
-  noAnswer: {fileID: 8300000, guid: e6545f1c956c07a42acaded9a72330e4, type: 3}
+  gameFinish: {fileID: 8300000, guid: 97da355f273560c45ab42017acfafbec, type: 3}
+  noAnswer: {fileID: 8300000, guid: a3b447c212e111543bef6bceb589858b, type: 3}
+  correctAnswer: {fileID: 8300000, guid: 0d96906ab4c4105469c7a69c14fa4ceb, type: 3}
+  wrongAnswer: {fileID: 8300000, guid: ead4c28dd1b91dc46854f7ec48d1c77d, type: 3}
   BGM: {fileID: 8300000, guid: e43c242a8b1b30e489436778a3ff4847, type: 3}
 --- !u!82 &263698613
 AudioSource:
@@ -406,12 +408,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hi Kiryu-chan! I heard you have a crush on me, how
-
-    sweet! How about
-    this, if you can make me laugh,
-
-    I''ll go out with you. :O'
+  m_text: How would you feel if you stepped on a Lego?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a54686d6cbc11fb45880bf3cf1d23cf5, type: 2}
   m_sharedMaterial: {fileID: -7593794791977853135, guid: a54686d6cbc11fb45880bf3cf1d23cf5, type: 2}
@@ -505,7 +502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &368521372
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1926,6 +1923,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1806512639}
     m_Modifications:
+    - target: {fileID: 993021077201686085, guid: 4456baf227693b240806aa4217a589eb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7d9867d78b7672e4dbfe01707feaa92d, type: 3}
     - target: {fileID: 5354811283476267695, guid: 4456baf227693b240806aa4217a589eb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2012,7 +2013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8374070130308955899, guid: 4456baf227693b240806aa4217a589eb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2119,8 +2120,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6062860787375040180, guid: 71ec948f24372e641b7feb4c1ecf0f2c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6662232725810164274, guid: 71ec948f24372e641b7feb4c1ecf0f2c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fec3b196139bf534b8d03457136f04ed, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

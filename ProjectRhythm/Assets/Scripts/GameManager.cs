@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("START");
                 countdownText.text = "START!";
-                sfxSource.PlayOneShot(audioManager.gameStart);
+               // sfxSource.PlayOneShot(audioManager.gameStart);
             }
         }
         yield return new WaitForSeconds(1f);
@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
         if (curPlace >= 16)
         {
             Debug.Log("GAME FINISH!");
-            musicSource.Stop(); //stops the music 
+            //musicSource.Stop(); //stops the music 
             sfxSource.PlayOneShot(audioManager.gameFinish);
             Invoke("FinishGame", 3f);
         }

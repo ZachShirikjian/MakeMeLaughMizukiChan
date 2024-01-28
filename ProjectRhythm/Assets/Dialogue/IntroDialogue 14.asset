@@ -16,3 +16,5 @@ MonoBehaviour:
   soundEffect: {fileID: 8300000, guid: 9fdf6fbf42a49524891881e7b3d6702b, type: 3}
   dialogueText: I'm not joking, I'm serious here!
   characterSprite: {fileID: 21300000, guid: bf95b14002ed8144ba291087f1deab8e, type: 3}
+  correctButton: {fileID: 0}
+  incorrectButton: {fileID: 0}
