@@ -44,9 +44,15 @@ public class GameManager : MonoBehaviour
     public GameObject correctPrefab;
     public GameObject incorrectPrefab;
 
+    public GameOver gameOverScript;
+
+    public GameObject transition;
+
     void Start()
     {
         canvas = GameObject.Find("Canvas");
+        transition.SetActive(false);
+        gameOverScript.enabled = false;
         restartBut.SetActive(false);
         quitBut.SetActive(false);
         optionsMenu.SetActive(false);
@@ -134,17 +140,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("LOAD NEW DIALOGUE");
         dialogueBox.SetActive(true); 
 
-        //16 is last line of dialogue 
-        if (curPlace >= 16)
-        {
-            Debug.Log("GAME FINISH!");
-            optionsMenu.SetActive(false);
-            //musicSource.Stop(); //stops the music 
-            sfxSource.PlayOneShot(audioManager.gameFinish);
-            Invoke("FinishGame", 3f);
-        }
-
-        else if(curPlace < 16)
+        if (curPlace < 19)
         {
             //IF AN ANSWER WAS GIVEN
             if (noAnswers == false && curPlace > 0)
@@ -175,16 +171,33 @@ public class GameManager : MonoBehaviour
                 curPlace++;
             }
 
-            speakerText.text = dialogueList[curPlace].dialogueText.ToString();
 
-            //IF A DIALOGUE OPTION HAS A SOUND ON IT PLAY SOUND
-            if (dialogueList[curPlace].soundEffect != null)
+            if(curPlace < 19)
             {
-                sfxSource.PlayOneShot(dialogueList[curPlace].soundEffect);
+                speakerText.text = dialogueList[curPlace].dialogueText.ToString();
+
+                //IF A DIALOGUE OPTION HAS A SOUND ON IT PLAY SOUND
+                if (dialogueList[curPlace].soundEffect != null)
+                {
+                    sfxSource.PlayOneShot(dialogueList[curPlace].soundEffect);
+                }
+                mizukiSprite.sprite = dialogueList[curPlace].characterSprite;
+                StopAllCoroutines(); //Ensures that only 1 instance of AnswerTimer coroutine runs at a time
+                StartCoroutine("AnswerTimer");
             }
-            mizukiSprite.sprite = dialogueList[curPlace].characterSprite;
-            StopAllCoroutines(); //Ensures that only 1 instance of AnswerTimer coroutine runs at a time
-            StartCoroutine("AnswerTimer");
+
+            //AFTER ALL QUESTIONS ASKED
+            //END THE GAME
+            else if(curPlace >= 19)
+            {
+                Debug.Log("GAME FINISH!");
+                optionsMenu.SetActive(false);
+                musicSource.Stop(); //stops the music 
+                sfxSource.PlayOneShot(audioManager.gameFinish);
+                dialogueBox.SetActive(false);
+                Invoke("FinishGame", 1f);
+            }
+
         }
 
     }
@@ -215,21 +228,25 @@ public class GameManager : MonoBehaviour
     //Checks # of correct answers given based on laugh value
     public void FinishGame()
     {
-        if(laughAmount >= 4)
+        OnDisable();
+        gameOverScript.enabled = true;
+        gameOverScript.OnEnable();
+        dialogueBox.SetActive(true);
+        if (laughAmount >= 4)
         {
             Debug.Log("GAME WIN!");
-            speakerText.text = dialogueList[18].dialogueText.ToString();
-            sfxSource.PlayOneShot(dialogueList[18].soundEffect);
-            mizukiSprite.sprite = dialogueList[18].characterSprite;
+            speakerText.text = dialogueList[21].dialogueText.ToString();
+            sfxSource.PlayOneShot(dialogueList[21].soundEffect);
+            mizukiSprite.sprite = dialogueList[21].characterSprite;
         }
 
         //PLAY LOSING SFX
         else if (laughAmount < 4)
         {
             Debug.Log("GAME LOSE");
-            speakerText.text = dialogueList[17].dialogueText.ToString();
-            sfxSource.PlayOneShot(dialogueList[17].soundEffect);
-            mizukiSprite.sprite = dialogueList[17].characterSprite; 
+            speakerText.text = dialogueList[20].dialogueText.ToString();
+            sfxSource.PlayOneShot(dialogueList[20].soundEffect);
+            mizukiSprite.sprite = dialogueList[20].characterSprite; 
         }
         Invoke("TryAgain", 6f);
     }
@@ -250,7 +267,7 @@ public class GameManager : MonoBehaviour
         optionsMenu.SetActive(true);
         correctPrefab = Instantiate(dialogueList[curPlace].correctButton, optionsMenu.transform);
         incorrectPrefab = Instantiate(dialogueList[curPlace].incorrectButton, optionsMenu.transform);
-        incorrectPrefab.transform.position = new Vector3(incorrectPrefab.transform.localPosition.x, incorrectPrefab.transform.position.y);
+        incorrectPrefab.transform.position = new Vector3(optionsMenu.transform.position.x, optionsMenu.transform.position.y - 100);
 
         EventSystem.current.SetSelectedGameObject(correctPrefab);
         //correctPrefab = option1;

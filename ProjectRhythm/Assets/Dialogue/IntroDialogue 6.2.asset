@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb6a67100b6666d4fbe851099fa1729f, type: 3}
-  m_Name: IntroDialogue 12
+  m_Name: IntroDialogue 6.2
   m_EditorClassIdentifier: 
-  correctDialogue: 1
-  soundEffect: {fileID: 8300000, guid: 926fba07210fb0e4583475e39a9a3842, type: 3}
-  dialogueText: 'Yeah, I''m just teasing you. '
-  characterSprite: {fileID: 21300000, guid: 9171e89c091658342ab33d4a98d81a6e, type: 3}
+  correctDialogue: 0
+  soundEffect: {fileID: 8300000, guid: 80d44a51d3af4f74688f1b1d5272a629, type: 3}
+  dialogueText: "You\u2019re so greedy! Don\u2019t you know it\u2019s the thought
+    that counts!\r\n"
+  characterSprite: {fileID: 21300000, guid: 1d5dad27f6dbb91459fa15844b585a65, type: 3}
   correctButton: {fileID: 0}
   incorrectButton: {fileID: 0}

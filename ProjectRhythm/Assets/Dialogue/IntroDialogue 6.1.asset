@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb6a67100b6666d4fbe851099fa1729f, type: 3}
-  m_Name: IntroDialogue 10
+  m_Name: IntroDialogue 6.1
   m_EditorClassIdentifier: 
   correctDialogue: 0
   soundEffect: {fileID: 0}
-  dialogueText: ' Will you marry me right here and now?'
+  dialogueText: How would you react if I got you a present?
   characterSprite: {fileID: 21300000, guid: ee7ff90c89382da4599b874c43e42abc, type: 3}
-  correctButton: {fileID: 5400657129447881013, guid: 7caf8295bdd67ce43b568c8b2c86f514, type: 3}
-  incorrectButton: {fileID: 5400657129447881013, guid: f59fbaa126c94844c862e74770e2d694, type: 3}
+  correctButton: {fileID: 5400657129447881013, guid: f59fbaa126c94844c862e74770e2d694, type: 3}
+  incorrectButton: {fileID: 5400657129447881013, guid: baa9f00db084c8a41b60520446222433, type: 3}
