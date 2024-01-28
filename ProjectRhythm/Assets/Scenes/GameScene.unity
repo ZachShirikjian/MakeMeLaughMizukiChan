@@ -1401,7 +1401,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed991640e1b1b0f489e0659a8e11c41d, type: 2}
   curPlace: 0
   laughAmount: 0
-  noAnswers: 0
+  noAnswers: 1
   optionsMenu: {fileID: 1806512638}
   dialogueBox: {fileID: 1195600091}
   speakerText: {fileID: 331793903}

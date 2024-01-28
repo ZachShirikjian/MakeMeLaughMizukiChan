@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public List<Dialogue> dialogueList;
     public int curPlace = 0; //current place in dialogue, starts at 
     public int laughAmount = 0; //goes up every time correct answer chosen
-    public bool noAnswers = false;
+    public bool noAnswers = true;
 
     //REFS//
     public GameObject optionsMenu;
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         laughMeter.gameObject.SetActive(false);
         timerUI.SetActive(false);
         musicSource.clip = null;
-        noAnswers = false;
+        noAnswers = true;
         countdownText.text = "";
         speakerText.text = dialogueList[0].dialogueText.ToString();
         mizukiSprite.sprite = dialogueList[0].characterSprite;
@@ -123,11 +123,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("LOAD NEW DIALOGUE");
         dialogueBox.SetActive(true); 
-        if(noAnswers == true)
+        if(noAnswers == false)
         {
-            noAnswers = false;
+            noAnswers = true;
         }
-        else if(noAnswers == false)
+        else if(noAnswers == true)
         {
             curPlace++;
         }
@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour
         if (curPlace >= 16)
         {
             Debug.Log("GAME FINISH!");
+            optionsMenu.SetActive(false);
             //musicSource.Stop(); //stops the music 
             sfxSource.PlayOneShot(audioManager.gameFinish);
             Invoke("FinishGame", 3f);
@@ -213,12 +214,9 @@ public class GameManager : MonoBehaviour
        // incorrectPrefab = option2;
         OnEnable();
 
-        //IF no buttons are pressed in 5 seconds, close the options menu, then move onto the next piece of dialogue.
-        //Invoke("NoOptionsSelected", 5f);
-      //  //if(!performed)
-      //  {
-       //     CloseOptions();
-      //  }
+        //If Enter Button does not get pressed in 5 seconds
+       // Invoke("NoOptionsSelected", 5f);
+
     }
 
     //CLOSE OPTIONS MENU AUTOMATICALLY AFTER 3 SECONDS IF NO BUTTON IS PRESSED
@@ -228,7 +226,7 @@ public class GameManager : MonoBehaviour
     {
         //IF NO BUTTONS WERE PRESSED
         //LOAD NO ANSWERS GIVEN DIALOGUE 
-        if(!chooseOption.action.triggered)
+        if(noAnswers == true && !chooseOption.action.triggered)
         {
             OnDisable();
             Debug.Log("NO OPTIONS SELECTED");
@@ -266,7 +264,6 @@ public class GameManager : MonoBehaviour
         if(EventSystem.current.currentSelectedGameObject == correctPrefab)
         {
             Debug.Log("CORRECT ANSWER");
-            optionsMenu.SetActive(false);
             curPlace += 2;
             speakerText.text = dialogueList[curPlace].dialogueText.ToString();
             mizukiSprite.sprite = dialogueList[curPlace].characterSprite;
@@ -284,7 +281,6 @@ public class GameManager : MonoBehaviour
         else if(EventSystem.current.currentSelectedGameObject == incorrectPrefab)
         {
             Debug.Log("WRONG ANSWER");
-            optionsMenu.SetActive(false);
             //MAKE THIS THE LAST PIECE OF DIALOGUE FOR NOW//
             curPlace += 1;
             speakerText.text = dialogueList[curPlace].dialogueText.ToString();
@@ -296,7 +292,9 @@ public class GameManager : MonoBehaviour
             Destroy(incorrectPrefab.gameObject);
         }
 
+        noAnswers = false;
         OnDisable();
+        optionsMenu.SetActive(false);
         Invoke("LoadDialogue", 3f);
 
         //  if(dialogueList[curPlace].correctDialogue == true)
