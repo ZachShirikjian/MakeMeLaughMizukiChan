@@ -146,28 +146,29 @@ public class GameManager : MonoBehaviour
 
         else if(curPlace < 16)
         {
+            //IF AN ANSWER WAS GIVEN
             if (noAnswers == false && curPlace > 0)
             {
-                noAnswers = true;
-                curPlace++;
-
                 if (correctAnswer == true)
                 {
-
+                    curPlace++;
                 }
 
                 else if (correctAnswer == false)
                 {
-
+                    curPlace += 2;
                 }
-                correctAnswer = false;
 
+                correctAnswer = false;
             }
 
+            //IF NO ANSWERS WERE GIVEN
             else if (noAnswers == true && curPlace > 0)
             {
+                curPlace += 3;
             }
 
+            //START OF DIALOGUE
             else if(noAnswers == true && curPlace == 0)
             {
                 Debug.Log("START DIALOGUE");
@@ -249,7 +250,7 @@ public class GameManager : MonoBehaviour
         optionsMenu.SetActive(true);
         correctPrefab = Instantiate(dialogueList[curPlace].correctButton, optionsMenu.transform);
         incorrectPrefab = Instantiate(dialogueList[curPlace].incorrectButton, optionsMenu.transform);
-        incorrectPrefab.transform.position = new Vector3(incorrectPrefab.transform.position.x + 100, incorrectPrefab.transform.position.y);
+        incorrectPrefab.transform.position = new Vector3(incorrectPrefab.transform.localPosition.x, incorrectPrefab.transform.position.y);
 
         EventSystem.current.SetSelectedGameObject(correctPrefab);
         //correctPrefab = option1;

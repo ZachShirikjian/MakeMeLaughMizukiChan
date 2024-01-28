@@ -664,6 +664,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1830469376}
+          m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
+          m_MethodName: SubmitSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1830469376}
+          m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
+          m_MethodName: HoverSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &309556838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1563,7 +1591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f77a9472ac5614fb0c4137dff12d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownBeep: {fileID: 0}
   gameStart: {fileID: 0}
   gameFinish: {fileID: 0}
   noAnswer: {fileID: 0}
@@ -2687,7 +2714,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 0.21226418, b: 0.6765356, a: 0}
+  m_BackGroundColor: {r: 0, g: 1, b: 0.31783962, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3694,6 +3721,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1830469376}
+          m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
+          m_MethodName: SubmitSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1830469376}
+          m_TargetAssemblyTypeName: UISFX, Assembly-CSharp
+          m_MethodName: HoverSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1728010254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4109,11 +4164,11 @@ RectTransform:
   - {fileID: 624778487}
   - {fileID: 1508423358}
   - {fileID: 1783189755}
+  - {fileID: 187488935}
+  - {fileID: 369373349}
   - {fileID: 692997684}
   - {fileID: 443263265}
   - {fileID: 1914748637}
-  - {fileID: 187488935}
-  - {fileID: 369373349}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

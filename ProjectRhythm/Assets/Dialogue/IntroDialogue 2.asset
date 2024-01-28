@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   correctDialogue: 0
   soundEffect: {fileID: 8300000, guid: 9fdf6fbf42a49524891881e7b3d6702b, type: 3}
-  dialogueText: What? You like to enjoy pain? That's weird of you.
+  dialogueText: What? Do you like to enjoy pain? That's weird!
   characterSprite: {fileID: 21300000, guid: 265606b17f40ddb4499c78c7c96f51f7, type: 3}
   correctButton: {fileID: 0}
   incorrectButton: {fileID: 0}

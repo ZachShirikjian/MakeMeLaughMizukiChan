@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   correctDialogue: 0
   soundEffect: {fileID: 8300000, guid: 9fdf6fbf42a49524891881e7b3d6702b, type: 3}
-  dialogueText: Hey! If you wanna date me you should get to know my humor. It's not
-    typical you know.
+  dialogueText: 'Hey! If you wanna date me you should get to know my sense of humor!
+
+'
   characterSprite: {fileID: 21300000, guid: 1d5dad27f6dbb91459fa15844b585a65, type: 3}
   correctButton: {fileID: 0}
   incorrectButton: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   correctDialogue: 1
   soundEffect: {fileID: 8300000, guid: 24895cc0553e27147bb52818db6601cd, type: 3}
-  dialogueText: 'Yeah, I''m just teasing you. Who knows how long we''d last? '
+  dialogueText: 'Yeah, I''m just teasing you. '
   characterSprite: {fileID: 21300000, guid: 9171e89c091658342ab33d4a98d81a6e, type: 3}
   correctButton: {fileID: 0}
   incorrectButton: {fileID: 0}
