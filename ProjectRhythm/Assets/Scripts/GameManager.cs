@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public int curPlace = 0; //current place in dialogue, starts at 
     public int laughAmount = 0; //goes up every time correct answer chosen
     public bool noAnswers = true;
+    public bool correctAnswer = false;
 
     public AudioClip[] countdownSounds = new AudioClip[4];
 
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
         timerUI.SetActive(false);
         musicSource.clip = null;
         noAnswers = true;
+        correctAnswer = false;
         countdownText.text = "";
         speakerText.text = dialogueList[0].dialogueText.ToString();
         mizukiSprite.sprite = dialogueList[0].characterSprite;
@@ -131,15 +133,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("LOAD NEW DIALOGUE");
         dialogueBox.SetActive(true); 
-        if(noAnswers == false)
-        {
-            noAnswers = true;
-           curPlace++;
-        }
-        else if(noAnswers == true)
-        {
-            curPlace++;
-        }
 
         //16 is last line of dialogue 
         if (curPlace >= 16)
@@ -150,8 +143,37 @@ public class GameManager : MonoBehaviour
             sfxSource.PlayOneShot(audioManager.gameFinish);
             Invoke("FinishGame", 3f);
         }
+
         else if(curPlace < 16)
         {
+            if (noAnswers == false && curPlace > 0)
+            {
+                noAnswers = true;
+                curPlace++;
+
+                if (correctAnswer == true)
+                {
+
+                }
+
+                else if (correctAnswer == false)
+                {
+
+                }
+                correctAnswer = false;
+
+            }
+
+            else if (noAnswers == true && curPlace > 0)
+            {
+            }
+
+            else if(noAnswers == true && curPlace == 0)
+            {
+                Debug.Log("START DIALOGUE");
+                curPlace++;
+            }
+
             speakerText.text = dialogueList[curPlace].dialogueText.ToString();
 
             //IF A DIALOGUE OPTION HAS A SOUND ON IT PLAY SOUND
@@ -166,12 +188,13 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //PLAYER HAS TO WAIT 3 SECONDS BEFORE GIVING ANSWER//
     IEnumerator AnswerTimer()
     {
         timerUI.SetActive(true);
         timeRemaining = 3;
         timerText.text = timeRemaining.ToString();
-        for (int i = 3; i >= 0; i--)
+        for (int i = 3; i > 0; i--)
         {
             yield return new WaitForSeconds(1f);
             timeRemaining--;
@@ -179,7 +202,7 @@ public class GameManager : MonoBehaviour
             {
                 timerText.text = timeRemaining.ToString();
             }
-            else if(timeRemaining <= 0)
+            else if(timeRemaining == 0)
             {
                 timerUI.SetActive(false);
                 AppearOptions(); //Make options menu appear after 3 seconds
@@ -234,7 +257,7 @@ public class GameManager : MonoBehaviour
         OnEnable();
 
         //If Enter Button does not get pressed in 5 seconds
-       // Invoke("NoOptionsSelected", 5f);
+       Invoke("NoOptionsSelected", 3f);
 
     }
 
@@ -245,7 +268,7 @@ public class GameManager : MonoBehaviour
     {
         //IF NO BUTTONS WERE PRESSED
         //LOAD NO ANSWERS GIVEN DIALOGUE 
-        if(noAnswers == true && !chooseOption.action.triggered)
+        if(noAnswers == true)
         {
             OnDisable();
             Debug.Log("NO OPTIONS SELECTED");
@@ -255,9 +278,11 @@ public class GameManager : MonoBehaviour
             speakerText.text = dialogueList[16].dialogueText.ToString();
             mizukiSprite.sprite = dialogueList[16].characterSprite;
             sfxSource.PlayOneShot(audioManager.noAnswer, 0.35f);
-            curPlace += 3;
-            noAnswers = true;
             Invoke("LoadDialogue", 3f);
+        }
+        else if (noAnswers == false)
+        {
+            Debug.Log("ANSWER ALREADY GIVEN");
         }
 
 
@@ -278,7 +303,7 @@ public class GameManager : MonoBehaviour
     public void ContinueDialogue(InputAction.CallbackContext context)
     {
         Debug.Log(EventSystem.current.currentSelectedGameObject);
-
+        noAnswers = false;
         //IF correctPrefab selected and pressed, jump to correct dialogue option
         if(EventSystem.current.currentSelectedGameObject == correctPrefab)
         {
@@ -294,6 +319,7 @@ public class GameManager : MonoBehaviour
             Destroy(correctPrefab.gameObject);
             Destroy(incorrectPrefab.gameObject);
 
+            correctAnswer = true;
         }
 
         //IF incorrectPrefab selected and pressed, jump to incorrect dialogue option 
@@ -309,9 +335,10 @@ public class GameManager : MonoBehaviour
             //DESTROY COPIES OF CORRECT/INCORRECT PREFABS IN THE UI! 
             Destroy(correctPrefab.gameObject);
             Destroy(incorrectPrefab.gameObject);
+
+            correctAnswer = false;
         }
 
-        noAnswers = false;
         optionsMenu.SetActive(false);
         OnDisable();
         Invoke("LoadDialogue", 3f);
