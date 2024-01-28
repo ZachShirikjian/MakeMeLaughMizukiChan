@@ -16,4 +16,6 @@ MonoBehaviour:
   soundEffect: {fileID: 8300000, guid: afab682958593e4479bfd01fedb978fd, type: 3}
   dialogueText: Heeheehee you're so funny I love you. Alright, you win. Let's go
     out.
-  characterSprite: {fileID: 21300000, guid: ca83a5612bd720841b929852448817f8, type: 3}
+  characterSprite: {fileID: 21300000, guid: 9171e89c091658342ab33d4a98d81a6e, type: 3}
+  correctButton: {fileID: 0}
+  incorrectButton: {fileID: 0}

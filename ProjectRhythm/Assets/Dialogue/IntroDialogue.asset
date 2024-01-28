@@ -16,6 +16,6 @@ MonoBehaviour:
   soundEffect: {fileID: 8300000, guid: d5f7f12f61301bc4180665c3114b0b74, type: 3}
   dialogueText: Hey Mako-san, I know you had a crush on me. Tell you what, if you
     make me laugh hard enough, I'll go out with you!
-  characterSprite: {fileID: 21300000, guid: fb0b4433062bddd4ca7a024986881d42, type: 3}
+  characterSprite: {fileID: 21300000, guid: a382593ecb253a14f997dbbe38059d82, type: 3}
   correctButton: {fileID: 0}
   incorrectButton: {fileID: 0}
